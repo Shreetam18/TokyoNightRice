@@ -1,0 +1,165 @@
+[colors]
+background = #1f2335
+background-alt = #24283b
+foreground = #a9b1d6
+primary = #7aa2f7
+secondary = #414868
+alert = #c53b53
+disabled = #565f89
+line-color = #ff757f
+
+[bar/bar1]
+width = 100%
+height = 25pt
+radius = 0
+wm-restack = i3
+offset-x = 0
+offset-y = 0
+dpi = 75
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 1
+padding-right = 1
+
+module-margin = 1.5
+
+separator =  
+separator-foreground = ${colors.disabled}
+
+font-0 = JetBrains Mono;2
+font-1 = Font Awesome 6 Free:pixelsize=12;2
+font-2 = Font Awesome 6 Free Solid:pixelsize=12;2
+font-3 = Font Awesome 6 Brands:pixelsize=12;2
+
+modules-left = i3 bspwm i3-workspaces windows
+modules-center = date
+modules-right = pulseaudio sepbar memory cpu sepbar powermenu sepbar tray
+
+[module/tray]
+type = internal/tray
+tray-position = right
+tray-detached = false
+tray-background = ${colors.background}
+tray-offset-x = -10
+tray-padding = 5
+tray-maxsize = 20
+tray-scale = 1.0
+
+enable-ipc = true
+
+[module/windows]
+type = internal/xwindow
+
+format = <label>
+format-background = ${colors.background}
+format-foreground = ${colors.foreground}
+format-padding = 4
+label = %title%
+label-maxlen = 30
+format-underline = ${colors.line-color}
+label-empty = Empty
+label-empty-foreground = #707880
+
+[module/i3]
+type = internal/i3
+pin-workspaces = true
+show-urgent = true
+strip-wsnumbers = true
+index-sort = true
+enable-click = true
+enable-scroll = false
+wrapping-scroll = false
+reverse-scroll = false
+fuzzy-match = true
+
+format = <label-state> <label-mode>
+format-underline = ${colors.line-color}
+
+label-mode = %mode%
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.secondary}
+
+label-focused = ""
+label-focused-background = ${colors.secondary}
+label-focused-padding = 2
+
+label-unfocused = ""
+label-unfocused-padding = 2
+
+label-visible = ""
+label-visible-padding = 2
+
+label-urgent = ""
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+format-spacing = 1
+
+label-open =  Power
+label-close =  Close
+label-separator = |
+
+menu-0-0 = 
+menu-0-0-exec = systemctl reboot
+menu-0-1 = 
+menu-0-1-exec = systemctl poweroff
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume-prefix = " "
+format-volume-prefix-foreground = ${colors.primary}
+format-volume = <label-volume>
+format-volume-underline = ${colors.line-color}
+
+label-volume = %percentage%%
+label-muted = 
+label-muted-foreground = ${colors.disabled}
+
+[module/memory]
+type = internal/memory
+interval = 3
+format-prefix = ":"
+format-prefix-foreground = ${colors.primary}
+format-underline = ${colors.line-color}
+label = %percentage_used:2%%
+
+[module/cpu]
+type = internal/cpu
+interval = 3
+format-prefix = ":"
+format-prefix-foreground = ${colors.primary}
+format-underline = ${colors.line-color}
+label = %percentage:2%%
+
+[module/date]
+type = internal/date
+interval = 1
+format-underline = ${colors.line-color}
+
+date = %A, %B %d, %I:%M %p
+date-alt = %B %d, %Y
+
+label = %date%
+label-foreground = ${colors.primary}
+
+[module/spacer]
+type = custom/text
+content = " "
+
+[module/sepbar]
+type = custom/text
+content = "|"
